@@ -59,7 +59,7 @@ public class View implements Observer {
         mainFrame.setSize(800, 800);
 
         openSitesPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 30, 0));
-        openSitesLabel = new JLabel("Open sites = 0");
+        openSitesLabel = new JLabel("Open sites: 0");
         openSitesPanel.add(openSitesLabel);
 
         percolatesLabel = new JLabel("System percolates!");
