@@ -5,11 +5,21 @@ import java.util.concurrent.TimeUnit;
 import javax.swing.*;
 import java.awt.event.*;
 
+// esse projeto eh baseado em: 
+// https://coursera.cs.princeton.edu/algs4/assignments/percolation/specification.php
+// implementacao previa para o curso (sem interface):
+// https://github.com/mdacach/coursera-algorithms-one/tree/master/Week1
+
 public class Model {
   private final int size;
   private final boolean[] grid;
   private int openSites;
-  ArrayList<Observer> observers; UnionFind connected; UnionFind filled;
+  ArrayList<Observer> observers;
+  // we need to use two union find structures to
+  // avoid erroneous water flowing from bottom virtual node
+  // to bottom row
+  UnionFind connected;
+  UnionFind filled;
   private int virtualTop;
   private int virtualBottom;
 
@@ -20,19 +30,23 @@ public class Model {
     observers = new ArrayList<>();
     connected = new UnionFind(n*n + 2); // extra two is virtual top and bottom
     filled = new UnionFind(n*n + 1); // only connect with the top virtual
+
     // id n*n is top virtual
     // id n*n + 1 is bottom virtual
-
     virtualTop = n * n;
     virtualBottom = n * n + 1;
-    // for all bottom row
-    // n = 4
-    //     16
+
+    // visualization for n = 4
+    //     16  -> top virtual node
     // 0, 1, 2, 3
     // 4, 5, 6, 7
     // 8, 9, 10, 11
     // 12, 13, 14, 15
-    //     17
+    //     17  -> bottom virtual node
+    //
+    // virtual nodes is a way to check if system percolates
+    // efficiently (we just need to check if both virtuals 
+    // are connected)
     for (int i = 0; i < n; i++) {
       connected.merge((n-1) * n + i, virtualBottom);
     }
@@ -40,6 +54,7 @@ public class Model {
     // bottom row and virtual bottom will be connected when opened
   }
 
+  // open random sites until system percolates
   public void randomlyOpen() {
     Random random = new Random();
     Timer timer = new Timer(200, null);
@@ -78,7 +93,7 @@ public class Model {
   }
 
   public void open(int id) {
-    // ja esta aberto
+    // already open
     if (grid[id]) return;
 
     grid[id] = true;

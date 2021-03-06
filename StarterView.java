@@ -3,6 +3,8 @@ import javax.swing.event.*;
 import java.awt.event.*;
 import java.awt.*;
 
+// interface inicial do programa
+// start, escolher tamanho, ajuda inicial
 public class StarterView {
   JFrame starterFrame;
   JButton startButton;

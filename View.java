@@ -4,6 +4,8 @@ import java.awt.event.*;
 import java.awt.*;
 import java.util.ArrayList;
 
+// interface principal do programa
+// grid para clicar nos blocos
 public class View implements Observer {
     Model model;
     Controller controller; // controller

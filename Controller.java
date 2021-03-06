@@ -1,3 +1,4 @@
+// mediador entre view e model (MVC)
 public class Controller {
   Model model;
   View view;

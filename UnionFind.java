@@ -1,3 +1,13 @@
+/*****************
+ * estrutura de dados que permite o "merge" de dois sites
+ * rapidamente.
+ * implementado com heuristicas "path compression" e "merge by size".
+ * complexidade: O(alpha(n)) (onde alpha eh inverse ackermann function)
+ * ver: https://en.wikipedia.org/wiki/Disjoint-set_data_structure#Proof_of_O(log*(n))_time_complexity_of_Union-Find
+ *
+ *
+ * referencia: https://www.cs.princeton.edu/~rs/AlgsDS07/01UnionFind.pdf
+ * */
 // 0-based
 public class UnionFind {
   private int[] parent;
@@ -23,6 +33,7 @@ public class UnionFind {
     return (find(a) == find(b));
   }
 
+  // merge by size
   public void merge(int a, int b) {
     if (same(a, b)) return;
     a = find(a); b = find(b);
