@@ -1,4 +1,10 @@
 import java.util.ArrayList;
+import java.util.Random;
+import java.lang.Thread;
+import java.util.concurrent.TimeUnit;
+import javax.swing.*;
+import java.awt.event.*;
+
 public class Model {
     private final int size;
     private final boolean[] grid;
@@ -32,6 +38,21 @@ public class Model {
         }
         
         // bottom row and virtual bottom will be connected when opened
+    }
+
+    public void randomlyOpen() {
+        Random random = new Random();
+        Timer timer = new Timer(200, null);
+        timer.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (percolates()) timer.stop();
+                int id = random.nextInt(size * size);
+                System.out.println("open " + id);
+                open(id);
+            }
+        });
+        timer.start();
     }
 
     public int getSize() {

@@ -20,6 +20,7 @@ public class View implements Observer {
     JButton helpButton;
     JLabel percolatesLabel;
     JButton resetButton;
+    JButton randomButton;
 
     String helpMessage = "Click on tiles to open them.\n" +
                          "White tiles are open, Blue tiles have water flowing through them.\n" +
@@ -38,7 +39,7 @@ public class View implements Observer {
     }
 
     public void update() {
-        openSitesLabel.setText("Open sites = " + model.getOpenSites());
+        openSitesLabel.setText(model.getOpenSites() + " open sites");
         for (Square square : squares) {
             int id = square.id;
             if (model.isFull(id)) {
@@ -59,7 +60,7 @@ public class View implements Observer {
         mainFrame.setSize(800, 800);
 
         openSitesPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 30, 0));
-        openSitesLabel = new JLabel("Open sites: 0");
+        openSitesLabel = new JLabel("0 open sites");
         openSitesPanel.add(openSitesLabel);
 
         percolatesLabel = new JLabel("System percolates!");
@@ -85,6 +86,15 @@ public class View implements Observer {
         });
         openSitesPanel.add(resetButton);
 
+        randomButton = new JButton("random");
+        randomButton.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                controller.randomlyOpen();
+            }
+        });
+        openSitesPanel.add(randomButton);
+
         mainFrame.setLayout(new BorderLayout());
         mainFrame.add(openSitesPanel, BorderLayout.NORTH);
 
@@ -101,6 +111,7 @@ public class View implements Observer {
                 counter++;
             }
         }
+
 
         mainFrame.add(gridPanel);
         //System.out.println("settando visible");

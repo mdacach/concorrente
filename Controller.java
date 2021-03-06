@@ -5,7 +5,6 @@ public class Controller {
     public Controller(Model model) {
         this.model = model;
         this.view = new View(this, model);
-        //System.out.println("criei squares");
         view.createView();
     }
 
@@ -18,6 +17,9 @@ public class Controller {
         this.model = new Model(n);
         this.view = new View(this, model);
         view.createView();
-        //System.out.println("resetou bro");
+    }
+
+    public void randomlyOpen() {
+        model.randomlyOpen();
     }
 }
