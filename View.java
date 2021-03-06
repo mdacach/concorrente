@@ -95,6 +95,7 @@ public class View implements Observer {
                 controller.randomlyOpen();
             }
         });
+        randomButton.setToolTipText("Open new sites randomly until percolation.");
         openSitesPanel.add(randomButton);
 
         mainFrame.setLayout(new BorderLayout());
