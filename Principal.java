@@ -1,7 +1,7 @@
 public class Principal {
-    StarterView starterView;
+  StarterView starterView;
 
-    public static void main(String[] args) {
-        new StarterView();
-    }
+  public static void main(String[] args) {
+    new StarterView();
+  }
 }
