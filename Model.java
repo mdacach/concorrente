@@ -63,7 +63,6 @@ public class Model {
       public void actionPerformed(ActionEvent e) {
         if (percolates()) timer.stop();
         int id = random.nextInt(size * size);
-        System.out.println("open " + id);
         open(id);
       }
     });
